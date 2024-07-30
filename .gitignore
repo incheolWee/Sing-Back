@@ -39,3 +39,4 @@ out/
 
 ### IntelliJ IDEA ###
 application-db.properties
+application.properties
