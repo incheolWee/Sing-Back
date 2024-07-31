@@ -18,17 +18,19 @@ import java.time.LocalDateTime;
 public class Sign {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // ID 값
 
     @JoinColumn(name="userId")
-    private Long userId;
+    private Long userId; // User table의 외부키
 
-    private String path;
+    private String path; // 사진 경로 cloud 사용
+
+    private boolean saved; // 저장 여부
 
     @CreationTimestamp
     @Column(updatable = false)
-    private LocalDateTime createDate;
+    private LocalDateTime createDate; // 생성일
 
     @UpdateTimestamp
-    private LocalDateTime updateDate;
+    private LocalDateTime updateDate; // 수정일
 }
