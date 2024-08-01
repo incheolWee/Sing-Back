@@ -1,5 +1,6 @@
 package com.example.sign_back.Sign;
 
+import com.example.sign_back.User.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,13 +20,13 @@ public class Sign {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id; // ID 값
 
-
-    @JoinColumn(name="userId")
-    private Long userId; // User table의 외부키
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     private String path; // 사진 경로 cloud 사용
 
-    private boolean saved; // 저장 여부
+    private Boolean saved; // 저장 여부
 
     @CreationTimestamp
     @Column(updatable = false)

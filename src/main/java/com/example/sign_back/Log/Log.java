@@ -1,5 +1,7 @@
 package com.example.sign_back.Log;
 
+import com.example.sign_back.User.User;
+import com.example.sign_back.Work.Work;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,31 +16,31 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Log { // 기록
-
     @Id
-    @JoinColumn(name= "RId")
-    private Long RId;  //Requirement 를 PK로 작성
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @JoinColumn(name= "workId")
-    private Long workId; //workId
+    @ManyToOne
+    @JoinColumn(name = "work_id", nullable = false) // The column in the Log table that refers to the Work table
+    private Work work;
 
-    @JoinColumn(name= "userId")
-    private Long userIid; // UserId
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    private String state; // 상태 add, update , delete
-    private String SorT; // 사인인지  Text인지
+    @ManyToOne
+    @JoinColumn(name = "log_id", nullable = false)
+    private Log log;
 
-    private int xPosition; // 저장된 X 좌표
-    private int yPosition; // 저장된 Y 좌표
-
-    private int width; // 가로 길이
-    private int height; // 세로 길이
-
-    private int fontSize; // 글씨 크기
-
-    private TextArea content;
-
-    @CreationTimestamp
+    private Long rId;
+    private String sort;
+    private String state;
+    private int xPosition;
+    private int yPosition;
+    private int width;
+    private int height;
+    private int fontSize;
     private LocalDateTime createDate;
+    private String message;
 
 }

@@ -1,10 +1,8 @@
 package com.example.sign_back.File;
 
-import jakarta.persistence.Entity;
+import com.example.sign_back.Work.Work;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,22 +16,26 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class File {
     @Id
-    @JoinColumn(name = "workId")
-    private Long id;// workID의  PK. FK이지만 PK로 사용
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "work_id")
+    private Long workId;
 
-    private String font; // 폰트 이름
+    @ManyToOne
+    @JoinColumn(name = "work_id", insertable = false, updatable = false) // The column in the File table that refers to the Work table
+    private Work work;
 
-    private String name; // 파일 이름
-    private byte size; // 파일 사이즈
-    private String path; // 파일 경로
-
-    private double xPixel; // 파일 X축 길이
-    private double yPixel; // 파일 Y축 길이
+    private String font;
+    private String name;
+    private byte size;
+    private String path;
+    private double xPixel;
+    private double yPixel;
 
     @CreationTimestamp
-    private LocalDateTime createDate; // 생성일
+    @Column(updatable = false)
+    private LocalDateTime createDate;
 
     @UpdateTimestamp
-    private LocalDateTime updateDDage; // 수정일
+    private LocalDateTime updateDate;
 
 }
