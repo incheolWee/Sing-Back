@@ -1,6 +1,7 @@
 package com.example.sign_back.Requirement;
 
 
+import com.example.sign_back.Log.Log;
 import com.example.sign_back.Work.Work;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.mapping.ToOne;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,8 +22,9 @@ public class Requirement { // 요구사항
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @OneToOne(mappedBy = "log") // The column in the Requirement table that refers to the Work table
-//    private Work work;
+    @ManyToOne
+    @JoinColumn(name = "work_id", nullable = false)
+    private Work work;
 
     private Boolean finish;
     private String sort;
@@ -32,4 +35,6 @@ public class Requirement { // 요구사항
     @Column(updatable = false)
     private LocalDateTime createDate;
 
+    @OneToMany(mappedBy = "requirement", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Log> logs;
 }

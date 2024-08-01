@@ -29,6 +29,10 @@ public class Work {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "file_id", nullable = false)
+    private File file;
+
     private boolean shared; // 공유됨
     private boolean trashed; // 휴지통
 
@@ -39,12 +43,11 @@ public class Work {
     private LocalDateTime updateDate; // 수정일
     private LocalDateTime deleteDate; // 삭제일
 
-    @OneToMany(mappedBy = "work", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<File> files;
 
     @OneToMany(mappedBy = "work", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Requirement> requirements;
 
     @OneToMany(mappedBy = "work", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Log> logs;
+
 }

@@ -1,5 +1,6 @@
 package com.example.sign_back.Log;
 
+import com.example.sign_back.Requirement.Requirement;
 import com.example.sign_back.User.User;
 import com.example.sign_back.Work.Work;
 import jakarta.persistence.*;
@@ -29,10 +30,9 @@ public class Log { // 기록
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "log_id", nullable = false)
-    private Log log;
+    @JoinColumn(name = "requiremnet_id", nullable = false)
+    private Requirement requirement;
 
-    private Long rId;
     private String sort;
     private String state;
     private int xPosition;
@@ -40,7 +40,9 @@ public class Log { // 기록
     private int width;
     private int height;
     private int fontSize;
-    private LocalDateTime createDate;
-    private String message;
 
+    @CreationTimestamp
+    private LocalDateTime createDate;
+
+    private String message;
 }

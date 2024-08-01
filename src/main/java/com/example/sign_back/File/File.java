@@ -10,6 +10,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -17,12 +19,11 @@ import java.time.LocalDateTime;
 public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "work_id")
-    private Long workId;
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "work_id", insertable = false, updatable = false) // The column in the File table that refers to the Work table
-    private Work work;
+    @OneToMany
+    @JoinColumn(name = "file", insertable = false, updatable = false)
+    private List<Work> works;
 
     private String font;
     private String name;
@@ -35,7 +36,6 @@ public class File {
     @Column(updatable = false)
     private LocalDateTime createDate;
 
-    @UpdateTimestamp
-    private LocalDateTime updateDate;
+
 
 }
