@@ -21,8 +21,7 @@ public class File {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    @JoinColumn(name = "file", insertable = false, updatable = false)
+    @OneToMany(mappedBy = "file", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Work> works;
 
     private String font;
