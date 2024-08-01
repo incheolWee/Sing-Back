@@ -1,11 +1,13 @@
 package com.example.sign_back.Requirement;
 
 
+import com.example.sign_back.Work.Work;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.mapping.ToOne;
 
 import java.time.LocalDateTime;
 
@@ -16,18 +18,18 @@ import java.time.LocalDateTime;
 public class Requirement { // 요구사항
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long RId; //고유 id
+    private Long id;
 
-    @JoinColumn(name="workId")
-    private Long workId; //워크 번호
+//    @OneToOne(mappedBy = "log") // The column in the Requirement table that refers to the Work table
+//    private Work work;
 
-    private String SorT; // 사인인지 text인지 구별
-    private double xPosition; // 지정한 x 좌표
-    private double yPosition; // 지정한 y 좌표
-
-    private boolean finish; // 완료
+    private Boolean finish;
+    private String sort;
+    private double xPosition;
+    private double yPosition;
 
     @CreationTimestamp
-    private LocalDateTime createDate; // 생성일
+    @Column(updatable = false)
+    private LocalDateTime createDate;
 
 }
