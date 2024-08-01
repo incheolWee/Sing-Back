@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name= "File")
 public class File {
     @Id
     @JoinColumn(name = "workId")
