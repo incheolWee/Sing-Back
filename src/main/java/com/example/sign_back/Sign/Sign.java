@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name= "Sign")
 public class Sign {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id; // ID 값
+
 
     @JoinColumn(name="userId")
     private Long userId; // User table의 외부키
