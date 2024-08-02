@@ -17,13 +17,13 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name="User")
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // PK
+    private Long userId; // PK
 
-    private String username; // 이름
+    private String userName; // 이름
     private String email; // 이메일
     private String password; // 비밀번호
 

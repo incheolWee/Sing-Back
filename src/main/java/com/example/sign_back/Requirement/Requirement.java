@@ -20,11 +20,14 @@ import java.util.List;
 public class Requirement { // 요구사항
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long requirementId;
 
     @ManyToOne
-    @JoinColumn(name = "work_id", nullable = false)
+    @JoinColumn(name = "workId", nullable = false)
     private Work work;
+
+    @OneToMany(mappedBy = "requirement", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Log> logs;
 
     private Boolean finish;
     private String sort;
@@ -35,6 +38,5 @@ public class Requirement { // 요구사항
     @Column(updatable = false)
     private LocalDateTime createDate;
 
-    @OneToMany(mappedBy = "requirement", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Log> logs;
+
 }

@@ -19,18 +19,17 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table (name ="Work")
 public class Work {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; //PK
+    private Long workId; //PK
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "file_id", nullable = false)
+    @JoinColumn(name = "fileId", nullable = false)
     private File file;
 
     private boolean shared; // 공유됨

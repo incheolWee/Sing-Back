@@ -1,34 +1,37 @@
 package com.example.sign_back.Sign;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import com.example.sign_back.User.User;
 import java.util.List;
 
-@Controller
 @RestController
-@RequestMapping("/api/signs")
+@RequestMapping("api/signs")
 public class SignController {
     @Autowired
     private SignService signService;
-    @GetMapping
-    public List<Sign> getAllSigns() {
-        return signService.getAllSigns();
+
+    @PostMapping
+    public Sign createSign(@RequestBody Sign sign){
+        return signService.createSign(sign);
     }
 
     @GetMapping("/{id}")
-    public Sign getSignById(@PathVariable Long id) {
-        return signService.getSignById(id);
+    public ResponseEntity<Sign> getSignById(@PathVariable Long id){
+        return signService.getSignById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public Sign createSign(@RequestBody Sign sign) {
-        return signService.saveSign(sign);
+    @GetMapping
+    public List<Sign> getAllSigns(){
+        return signService.getAllSigns();
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteSign(@PathVariable Long id) {
-        signService.deleteSign(id);
+    @GetMapping ("/user/{userId}")
+    public List<Sign> getSignsByUserId(@PathVariable Long userId){
+        return null;
     }
 }

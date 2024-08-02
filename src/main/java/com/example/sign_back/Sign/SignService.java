@@ -1,25 +1,15 @@
 package com.example.sign_back.Sign;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.example.sign_back.User.User;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class SignService {
-    @Autowired
-    private SignRepository signRepository;
-
-    public List<Sign> getAllSigns(){
-        return signRepository.findAll();
-    }
-    public Sign getSignById(Long id){
-        return signRepository.findById(id).orElse(null);
-    }
-    public Sign saveSign(Sign sign){
-        return signRepository.save(sign);
-    }
-    public void deleteSign(Long id){
-        signRepository.deleteById(id);
-    }
+public interface SignService {
+Sign createSign(Sign sign);
+Optional<Sign> getSignById(Long id);
+List<Sign> getAllSigns();
+List<Sign> getSignsByUser(User user);
+Sign updateSign(Long id, Sign signDetails);
+void deleteSign(Long id);
 }

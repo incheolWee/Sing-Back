@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,18 +18,18 @@ import java.time.LocalDateTime;
 public class Log { // 기록
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long logId;
 
     @ManyToOne
-    @JoinColumn(name = "work_id", nullable = false) // The column in the Log table that refers to the Work table
+    @JoinColumn(name = "workId", nullable = false)
     private Work work;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "requiremnet_id", nullable = false)
+    @JoinColumn(name = "requirementId", nullable = false)
     private Requirement requirement;
 
     private String sort;
@@ -40,6 +39,7 @@ public class Log { // 기록
     private int width;
     private int height;
     private int fontSize;
+    private int pageNum;
 
     @CreationTimestamp
     private LocalDateTime createDate;

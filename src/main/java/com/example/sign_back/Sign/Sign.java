@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 public class Sign {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id; // ID 값
+    private Long signId; // ID 값
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
     private String path; // 사진 경로 cloud 사용
